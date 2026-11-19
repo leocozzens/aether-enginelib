@@ -1,7 +1,12 @@
-#include <core/core.hpp>
+#include <core/engine.hpp>
+
+using namespace Aether;
 
 int main(void) {
-    core_init();
-    core_terminate();
+    Engine aether;
+
+    // aether.start()
+    // aether.stop()
+    // aether.diagnose(OUT STREAM(stdout))
     return 0;
 }
