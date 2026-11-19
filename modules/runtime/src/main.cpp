@@ -4,9 +4,6 @@ using namespace Aether;
 
 int main(void) {
     Engine aether;
-
-    // aether.start()
-    // aether.stop()
-    // aether.diagnose(OUT STREAM(stdout))
-    return 0;
+    aether.run();
+    return aether.diagnose(std::cout);
 }

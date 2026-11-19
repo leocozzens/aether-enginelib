@@ -1,24 +1,33 @@
-#include <iostream>
 #include <GLFW/glfw3.h>
+
 #include <core/engine.hpp>
 #include <core/window.hpp>
 
 using namespace Aether;
 
+// Constructor / Destructor
+
 Engine::Engine(void) {
     glfwInit();
-    glfwSwapInterval(-1);
     master.Create("AetherTestWindow");
-    while(!glfwWindowShouldClose(master.handle)) {
-        glfwSwapBuffers(master.handle);
-        glfwPollEvents();
-    }
-
-    std::cout << "Core initialized!\n";
+    master.bind();
+    glfwSwapInterval(-1);
 }
 
 Engine::~Engine() {
-    glfwDestroyWindow(master.handle);
+    master.Destroy();
     glfwTerminate();
-    std::cout << "Core terimated!\n";
+}
+
+// Public methods
+
+void Engine::run(void) {
+    while(master.is_open()) {
+        master.render();
+        glfwPollEvents();
+    }
+}
+
+int Engine::diagnose(std::ostream &out) {
+    return 0;
 }
