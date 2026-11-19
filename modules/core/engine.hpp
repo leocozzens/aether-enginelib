@@ -11,10 +11,12 @@ namespace Aether {
             Engine(void);
             ~Engine();
         public:
-            void run(void);
+            void poll(void);
+            bool is_running(void);
             int  diagnose(std::ostream &out);
-        private:
+
             Window master;
+        private:
     };
 }
 

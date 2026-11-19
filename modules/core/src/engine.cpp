@@ -1,5 +1,6 @@
+// External libraries
 #include <GLFW/glfw3.h>
-
+// Local headers
 #include <core/engine.hpp>
 #include <core/window.hpp>
 
@@ -10,8 +11,6 @@ using namespace Aether;
 Engine::Engine(void) {
     glfwInit();
     master.Create("AetherTestWindow");
-    master.bind();
-    glfwSwapInterval(-1);
 }
 
 Engine::~Engine() {
@@ -21,11 +20,12 @@ Engine::~Engine() {
 
 // Public methods
 
-void Engine::run(void) {
-    while(master.is_open()) {
-        master.render();
-        glfwPollEvents();
-    }
+void Engine::poll(void) {
+    glfwPollEvents();
+}
+
+bool Engine::is_running(void) {
+    return master.is_open();
 }
 
 int Engine::diagnose(std::ostream &out) {

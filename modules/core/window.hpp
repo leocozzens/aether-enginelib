@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 
 namespace Aether {
-    struct GraphicsContext;
+    struct Renderer;
 
     class Window {
         public:
@@ -22,7 +22,7 @@ namespace Aether {
 
             GLFWwindow *handle = nullptr;
         private:
-            GraphicsContext *ctx = nullptr;
+            Renderer *renderer = nullptr;
     };
 }
 
