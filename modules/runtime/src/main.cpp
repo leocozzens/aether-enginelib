@@ -1,7 +1,7 @@
 #include <core/core.hpp>
 
 int main(void) {
-    core_test_print();
-
+    core_init();
+    core_terminate();
     return 0;
 }

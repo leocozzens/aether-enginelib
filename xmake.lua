@@ -10,7 +10,7 @@ add_requires("opengl", { optional = true })
 target("aether_core")
     set_kind("static")
     add_files("modules/core/src/*.cpp")
-    add_packages("glfw", "opengl")
+    add_packages("glfw", "opengl", { public = true })
     add_includedirs("modules", { public = true })
     add_sysincludedirs(
         "external/opengl/api",
