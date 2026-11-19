@@ -1,0 +1,6 @@
+[submodule "external/egl"]
+	path = external/egl
+	url = https://github.com/KhronosGroup/EGL-Registry.git
+[submodule "external/opengl"]
+	path = external/opengl
+	url = https://github.com/KhronosGroup/OpenGL-Registry.git
