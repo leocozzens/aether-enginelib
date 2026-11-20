@@ -4,34 +4,35 @@
 
 using namespace Aether;
 
+#define REGISTER_GLFW_CALLBACK(_callback, _setter, ...)                             \
+    _setter(                                                                        \
+        handle,                                                                     \
+        [] (GLFWwindow *handle, auto... args) {                                     \
+            WindowContext *ctx = (WindowContext*) glfwGetWindowUserPointer(handle); \
+            if(ctx->callbacks.resize != nullptr)                                    \
+                ctx->callbacks.resize(ctx, args...);                                \
+        }                                                                           \
+    )
+
+
 // Constructor / Destructor
 
-Window::Window(void) { }
+WindowContext::WindowContext(const char *name) : Window(name) {
+    register_callbacks();
+}
+
+WindowContext::~WindowContext() = default;
+
 
 Window::Window(const char *name) {
-    Create(name);
+    handle = glfwCreateWindow(1200, 600, name, nullptr, nullptr);
 }
 
 Window::~Window() {
-    Destroy();
-}
-
-void Window::Create(const char *name) {
-    handle = glfwCreateWindow(1200, 600, name, nullptr, nullptr);
-    bind();
-    glfwSwapInterval(-1);
-    renderer = new Renderer();
-}
-
-void Window::Destroy(void) {
     unbind();
     if(handle != nullptr) {
         glfwDestroyWindow(handle);
         handle = nullptr;
-    }
-    if(renderer != nullptr) {
-        delete renderer;
-        renderer = nullptr;
     }
 }
 
@@ -49,8 +50,11 @@ void Window::unbind(void) {
     glfwMakeContextCurrent(nullptr);
 }
 
-void Window::render(void) {
-    bind();
-    renderer->cycle();
+void Window::swap(void) {
     glfwSwapBuffers(handle);
+}
+void WindowContext::register_callbacks(void) {
+    glfwSetWindowUserPointer(handle, (void*) this);
+
+    REGISTER_GLFW_CALLBACK(resize, glfwSetFramebufferSizeCallback);
 }

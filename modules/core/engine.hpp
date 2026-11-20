@@ -1,7 +1,8 @@
 #ifndef AETHER_ENGINE_HPP
 #define AETHER_ENGINE_HPP
 
-#include <iostream>
+#include <iosfwd>
+#include <optional>
 
 #include <core/window.hpp>
 
@@ -12,11 +13,13 @@ namespace Aether {
             ~Engine();
         public:
             void poll(void);
+            void update(void);
             bool is_running(void);
             int  diagnose(const std::ostream &out);
-
-            Window master;
         private:
+            static void set_default_callbacks(WindowCallbacks &callbacks);
+
+            std::optional<WindowContext> master;
     };
 }
 

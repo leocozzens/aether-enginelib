@@ -19,7 +19,9 @@ Runtime::~Runtime() {
 void Runtime::run(void) {
     while(engine->is_running()) {
         engine->poll();
-        engine->master.render();
+        // engine->process_input
+        // engine->step_world
+        engine->update();
     }
 }
 

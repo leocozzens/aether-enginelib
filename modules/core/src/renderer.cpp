@@ -5,12 +5,13 @@
 // Local headers
 #include <core/renderer.hpp>
 
+using namespace Aether;
+
 struct Aether::GraphicsContext {
     PFNGLCLEARPROC clear;
     PFNGLCLEARCOLORPROC clearColor;
+    PFNGLVIEWPORTPROC viewport;
 };
-
-using namespace Aether;
 
 // Constructor / Destructor
 
@@ -19,22 +20,24 @@ Renderer::Renderer(void) {
     init();
 }
 
-Renderer::~Renderer() {
-    delete ctx;
-}
+Renderer::~Renderer() = default;
 
 // Public methods
-
-void Renderer::cycle(void) {
+void Renderer::present(void) {
     ctx->clear(GL_COLOR_BUFFER_BIT);
+}
+
+void Renderer::resize(int width, int height) {
+    ctx->viewport(0, 0, (GLsizei) width, (GLsizei) height);
 }
 
 // Private methods
 
 void Renderer::load_context(void) {
-    ctx = new GraphicsContext();
+    ctx = std::make_unique<GraphicsContext>();
     ctx->clear = (PFNGLCLEARPROC) glfwGetProcAddress("glClear");
     ctx->clearColor = (PFNGLCLEARCOLORPROC) glfwGetProcAddress("glClearColor");
+    ctx->viewport = (PFNGLVIEWPORTPROC) glfwGetProcAddress("glViewport");
 }
 
 void Renderer::init(void) {
