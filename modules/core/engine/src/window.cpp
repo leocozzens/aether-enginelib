@@ -1,6 +1,6 @@
 // Local headers
-#include <core/window.hpp>
-#include <core/renderer.hpp>
+#include <core/engine/window.hpp>
+#include <core/graphics/renderer.hpp>
 
 using namespace Aether;
 

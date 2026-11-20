@@ -4,7 +4,7 @@
 #include <iosfwd>
 #include <optional>
 
-#include <core/window.hpp>
+#include <core/engine/window.hpp>
 
 namespace Aether {
     class Engine {

@@ -1,6 +1,6 @@
 // Local headers
 #include <runtime/runtime.hpp>
-#include <core/engine.hpp>
+#include <core/engine/engine.hpp>
 
 using namespace Aether;
 

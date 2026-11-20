@@ -1,9 +1,9 @@
 // External libraries
 #include <GLFW/glfw3.h>
 // Local headers
-#include <core/engine.hpp>
-#include <core/window.hpp>
-#include <core/renderer.hpp>
+#include <core/engine/engine.hpp>
+#include <core/engine/window.hpp>
+#include <core/graphics/renderer.hpp>
 
 using namespace Aether;
 
@@ -14,7 +14,6 @@ Engine::Engine(void) {
 
     master.emplace("AetherTestWindow");
     set_default_callbacks(master->callbacks);
-
 
     master->bind();
     master->activeRenderer = std::make_shared<Renderer>();

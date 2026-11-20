@@ -3,7 +3,7 @@
 #include <GL/glcorearb.h>
 
 // Local headers
-#include <core/renderer.hpp>
+#include <core/graphics/renderer.hpp>
 
 using namespace Aether;
 
