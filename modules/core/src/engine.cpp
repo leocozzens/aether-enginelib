@@ -28,6 +28,6 @@ bool Engine::is_running(void) {
     return master.is_open();
 }
 
-int Engine::diagnose(std::ostream &out) {
+int Engine::diagnose(const std::ostream &out) {
     return 0;
 }

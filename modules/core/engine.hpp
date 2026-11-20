@@ -13,7 +13,7 @@ namespace Aether {
         public:
             void poll(void);
             bool is_running(void);
-            int  diagnose(std::ostream &out);
+            int  diagnose(const std::ostream &out);
 
             Window master;
         private:

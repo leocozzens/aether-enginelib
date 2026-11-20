@@ -1,13 +1,10 @@
 // Local headers
-#include <core/engine.hpp>
+#include <runtime/runtime.hpp>
 
 using namespace Aether;
 
 int main(void) {
-    Engine aether;
-    while(aether.is_running()) {
-        aether.master.render();
-        aether.poll();
-    }
+    Runtime aether;
+    aether.run();
     return aether.diagnose(std::cout);
 }

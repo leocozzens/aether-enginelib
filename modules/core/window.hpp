@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 
 namespace Aether {
-    struct Renderer;
+    class Renderer;
 
     class Window {
         public:
