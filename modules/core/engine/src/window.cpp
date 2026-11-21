@@ -14,7 +14,6 @@ using namespace Aether;
         }                                                                           \
     )
 
-
 // Constructor / Destructor
 
 WindowContext::WindowContext(const char *name) : Window(name) {
@@ -53,6 +52,14 @@ void Window::unbind(void) {
 void Window::swap(void) {
     glfwSwapBuffers(handle);
 }
+
+Window::Dimension Window::get_dim(void) {
+    Dimension dim = { 0 };
+    if(handle != nullptr)
+        glfwGetWindowSize(handle, &dim.width, &dim.height);
+    return dim;
+}
+
 void WindowContext::register_callbacks(void) {
     glfwSetWindowUserPointer(handle, (void*) this);
 

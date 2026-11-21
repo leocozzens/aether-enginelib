@@ -15,8 +15,9 @@ Engine::Engine(void) {
     master.emplace("AetherTestWindow");
     set_default_callbacks(master->callbacks);
 
+    Window::Dimension dim = master->get_dim();
     master->bind();
-    master->activeRenderer = std::make_shared<Renderer>();
+    master->activeRenderer = std::make_shared<Renderer>(dim.width, dim.height);
     glfwSwapInterval(-1);
 }
 

@@ -14,10 +14,20 @@ namespace Aether {
             Window(const char *name);
             ~Window();
         public:
+            struct Dimension {
+                union {
+                    int width, x;
+                };
+                union {
+                    int height, y;
+                };
+            };
+        
             bool is_open(void);
             void bind(void);
             void unbind(void);
             void swap(void);
+            Dimension get_dim(void);
     
             GLFWwindow *handle = nullptr;
         protected:

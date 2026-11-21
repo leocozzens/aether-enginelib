@@ -8,7 +8,7 @@ namespace Aether {
 
     class Renderer {
         public:
-            Renderer(void);
+            Renderer(int width, int height);
             ~Renderer();
         public:
             void present(void);
@@ -16,7 +16,7 @@ namespace Aether {
             void resize(int width, int height);
         private:
             void load_context(void);
-            void init(void);
+            void init(int width, int height);
 
             std::unique_ptr<GraphicsContext> ctx;
     };

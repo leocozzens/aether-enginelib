@@ -15,9 +15,9 @@ struct Aether::GraphicsContext {
 
 // Constructor / Destructor
 
-Renderer::Renderer(void) {
+Renderer::Renderer(int width, int height) {
     load_context();
-    init();
+    init(width, height);
 }
 
 Renderer::~Renderer() = default;
@@ -40,6 +40,7 @@ void Renderer::load_context(void) {
     ctx->viewport = (PFNGLVIEWPORTPROC) glfwGetProcAddress("glViewport");
 }
 
-void Renderer::init(void) {
+void Renderer::init(int width, int height) {
     ctx->clearColor(0.0F, 0.0F, 1.0F, 1.0F);
+    resize(width, height);
 }
