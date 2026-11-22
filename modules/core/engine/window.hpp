@@ -1,13 +1,12 @@
-#ifndef AETHER_WINDOW_HPP
-#define AETHER_WINDOW_HPP
-
-#include <memory>
+#ifndef AETHER_ENGINE_WINDOW_HPP
+#define AETHER_ENGINE_WINDOW_HPP
 
 #include <GLFW/glfw3.h>
 
 namespace Aether {
     class WindowContext;
-    class Renderer;
+    class DisplayRenderer;
+    class Display;
 
     class Window {
         public:
@@ -43,7 +42,7 @@ namespace Aether {
             ~WindowContext();
         public:
             WindowCallbacks callbacks;
-            std::shared_ptr<Renderer> activeRenderer;
+            Display *display;
         private:
             void register_callbacks(void);
     };

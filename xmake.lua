@@ -12,14 +12,15 @@ function add_module(name)
     add_files("modules/" .. name .. "/src/*.cpp")
 end
 
-target("aether_graphics")
+target("aether_display")
     set_kind("static")
-    add_module("core/graphics")
+    add_module("core/display")
 
     add_packages("glfw", "opengl", { public = true })
     add_sysincludedirs(
         "external/opengl/api",
-        "external/egl/api"
+        "external/egl/api",
+        { public = true }
     )
 
 target("aether_world")
@@ -30,7 +31,7 @@ target("aether_engine")
     set_kind("static")
     add_module("core/engine")
     add_deps(
-        "aether_graphics",
+        "aether_display",
         "aether_world"
     )
 

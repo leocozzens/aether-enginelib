@@ -1,6 +1,6 @@
 // Local headers
 #include <core/engine/window.hpp>
-#include <core/graphics/renderer.hpp>
+#include <core/display/display.hpp>
 
 using namespace Aether;
 
@@ -21,7 +21,6 @@ WindowContext::WindowContext(const char *name) : Window(name) {
 }
 
 WindowContext::~WindowContext() = default;
-
 
 Window::Window(const char *name) {
     handle = glfwCreateWindow(1200, 600, name, nullptr, nullptr);
@@ -59,6 +58,8 @@ Window::Dimension Window::get_dim(void) {
         glfwGetWindowSize(handle, &dim.width, &dim.height);
     return dim;
 }
+
+// Private methods
 
 void WindowContext::register_callbacks(void) {
     glfwSetWindowUserPointer(handle, (void*) this);

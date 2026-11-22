@@ -3,7 +3,7 @@
 // Local headers
 #include <core/engine/engine.hpp>
 #include <core/engine/window.hpp>
-#include <core/graphics/renderer.hpp>
+#include <core/display/display.hpp>
 
 using namespace Aether;
 
@@ -14,14 +14,12 @@ Engine::Engine(void) {
 
     master.emplace("AetherTestWindow");
     set_default_callbacks(master->callbacks);
-
-    Window::Dimension dim = master->get_dim();
-    master->bind();
-    master->activeRenderer = std::make_shared<Renderer>(dim.width, dim.height);
-    glfwSwapInterval(-1);
+    masterDisplay.emplace(*master);
+    master->display = &(*masterDisplay);
 }
 
 Engine::~Engine() {
+    masterDisplay.reset();
     master.reset();
     glfwTerminate();
 }
@@ -34,7 +32,7 @@ void Engine::poll(void) {
 
 void Engine::update(void) {
     master->bind();
-    master->activeRenderer->present();
+    master->display->present();
     master->swap();
 }
 
@@ -50,8 +48,8 @@ int Engine::diagnose(const std::ostream &out) {
 
 void Engine::set_default_callbacks(WindowCallbacks &callbacks) {
     callbacks.resize = [] (WindowContext *ctx, int width, int height) {
-        ctx->activeRenderer->resize(width, height);
-        ctx->activeRenderer->present();
+        ctx->display->resize(width, height);
+        ctx->display->present();
         ctx->swap();
     };
 }

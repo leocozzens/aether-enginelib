@@ -5,6 +5,8 @@
 #include <optional>
 
 #include <core/engine/window.hpp>
+#include <core/display/display.hpp>
+// #include <core/world/scene.hpp>
 
 namespace Aether {
     class Engine {
@@ -20,6 +22,8 @@ namespace Aether {
             static void set_default_callbacks(WindowCallbacks &callbacks);
 
             std::optional<WindowContext> master;
+            std::optional<Display> masterDisplay;
+            // std::optional<Scene> gameScene;
     };
 }
 

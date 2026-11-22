@@ -1,0 +1,6 @@
+#ifndef AETHER_DISPLAY_SHADER_HPP
+#define AETHER_DISPLAY_SHADER_HPP
+
+
+
+#endif
